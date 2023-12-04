@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Legend of Zelda Breath of The Wild</title>
+    <link rel="icon" href="img/android-chrome-192x192.png" />
+    <style>
+      html,
+      body,
+      section {
+        block-size: 100%;
+      }
+
+      html {
+        scroll-snap-type: y mandatory;
+      }
+
+      section {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: solid 1px black;
+      }
+
+      body {
+        margin: 0;
+        font-size: 4rem;
+        overflow: hidden;
+      }
+
+      .row {
+        display: flex;
+      }
+
+      .column {
+        flex-basis: 50%;
+        width: 50%;
+        padding: 5vh;
+      }
+
+      .mipha {
+        color: white;
+        font-family: "hylia";
+
+        animation-name: fade-out;
+        animation-duration: 4s;
+      }
+
+      .line {
+        position: absolute;
+        background-color: #af966d;
+        height: 0.2vh;
+        vertical-align: middle;
+        width: 100%;
+
+        animation-name: fade-out;
+        animation-duration: 4s;
+        animation-timing-function: ease-in-out;
+      }
+
+      .arrow {
+        rotate: 180deg;
+        position: absolute;
+        right: 0;
+        width: 3vh;
+
+        animation-timing-function: ease-in-out;
+        animation-name: fade-out;
+        animation-duration: 4s;
+      }
+
+      .arrow-two-side {
+        display: flex;
+        width: 56vh;
+        position: absolute;
+      }
+
+      .mipha-img {
+        color: white;
+        opacity: 0;
+        transition: opacity 3s;
+        animation-timing-function: ease-in-out;
+        background: fixed;
+      }
+
+      .mipha-text {
+        margin-top: 5vh;
+        height: 40vh;
+
+        opacity: 0;
+        transition: opacity 5s;
+
+        font-size: 4.5vh;
+
+        animation-name: leftToRight;
+        animation-duration: 4s;
+      }
+
+      .chara-profile {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 46%;
+        margin-top: 8vh;
+        margin-left: 6vh;
+        z-index: 2;
+      }
+
+      .chara-img {
+        z-index: 1;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        margin-top: 8vh;
+        margin-right: 6vh;
+      }
+
+      #chara-text {
+        margin-top: 5vh;
+        height: 40vh;
+
+        opacity: 0;
+        transition: opacity 5s;
+
+        font-size: 4.5vh;
+
+        animation-name: leftToRight;
+        animation-duration: 4s;
+        animation: fade-out 4s 0.5s forwards cubic-bezier(1, 0, 0.5, 0);
+      }
+
+      #chara-name {
+        display: inline-block;
+        font-size: 12vh;
+        animation: fade-out 4s 0.5s forwards cubic-bezier(0.1, 0, 0.5, 0);
+        opacity: 0;
+      }
+
+      #chara-img {
+        opacity: 0;
+        z-index: 2;
+      }
+
+      #character {
+        opacity: 1;
+        transition: opacity 0.5s;
+        z-index: 2;
+      }
+
+      #character.hide {
+        opacity: 0;
+      }
+
+      .animate {
+        animation-name: slideLeft;
+        animation-duration: 4s;
+      }
+
+      .mipha {
+        display: inline-block;
+        opacity: 0;
+        filter: blur(4px);
+        margin-top: 5vh;
+
+        font-size: 12vh;
+
+        animation: fade-in 0.8s 0.4s forwards cubic-bezier(0.11, 0, 0.5, 0);
+      }
+
+      .botw {
+        background-size: cover;
+        background-image: url(img/black.jpg);
+
+        display: grid;
+      }
+
+      .name {
+        width: auto;
+      }
+
+      .chara-icon {
+        position: absolute;
+        display: flex;
+        opacity: 0;
+        transition: opacity 5s;
+        bottom: 0;
+        left: 0;
+        margin-bottom: 10vh;
+        margin-left: 5vh;
+      }
+
+      .chara-icon div {
+        padding: 4vh;
+        margin: 0.5vh;
+        flex-basis: 16.666666;
+        cursor: pointer;
+        border: #af966d solid 0.35vh;
+      }
+
+      .chara-icon div:hover {
+        opacity: 0.8;
+      }
+
+      .divider-from-left {
+        background-image: url(img/divider-content.png);
+        height: 2.5vh;
+        width: 94%;
+        margin: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-left: 4.5vh;
+        margin-top: 6vh;
+
+        animation-name: dividerAnimation;
+        animation-duration: 3.5s;
+        animation-timing-function: ease-in;
+      }
+
+      .divider-from-right {
+        background-image: url(img/divider-content.png);
+        height: 2.5vh;
+        width: 94%;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin-right: 6vh;
+        margin-bottom: 5vh;
+
+        transform: rotate(-180deg);
+        animation-name: dividerAnimation;
+        animation-duration: 3.5s;
+        animation-timing-function: ease-in;
+      }
+
+      /* Animasi fade-out */
+      .fade-out {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease-out;
+      }
+
+      /* Animasi fade-in */
+      .fade-in {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.5s ease-in;
+      }
+
+      .sheikah {
+        animation-name: rotate360;
+        animation-duration: 25s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-out;
+
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: 0;
+        margin-top: 10vh;
+        margin-right: 8vh;
+        width: 80vh;
+        height: 80vh;
+        transform: scale(0.5);
+      }
+
+      .circle {
+        animation-name: fade-out;
+        animation-duration: 4s;
+        transition: opacity 0.5s ease-out;
+      }
+
+      @keyframes rotate360 {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fade-out {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes dividerAnimation {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 94%;
+        }
+      }
+
+      @keyframes fade-in {
+        100% {
+          opacity: 1;
+          filter: blur(0);
+        }
+      }
+
+      @keyframes slideLeft {
+        0% {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0%);
+        }
+      }
+
+      @keyframes lineAnimation {
+        from {
+          background-color: #af966d;
+          width: 0;
+          animation-timing-function: ease-in-out;
+        }
+        to {
+          background-color: #af966d;
+          width: 97%;
+        }
+      }
+
+      @font-face {
+        font-family: "zelda";
+        src: url(font/The\ Wild\ Breath\ of\ Zelda.otf);
+      }
+
+      @font-face {
+        font-family: "hylia";
+        src: url(font/HyliaSerifBeta-Regular.otf);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="botw">
+      <div class="divider-from-left" style="margin-top: 1vh"></div>
+      <div class="row" id="character">
+        <div class="chara-profile">
+          <div height="80vh" class="mipha">
+            <div class="mipha">
+              <div id="chara-name" style="width: auto">Zelda</div>
+              <div style="display: flex" class="arrow-right">
+                <div class="line" id="line" style="margin-top: 0.35vh"></div>
+                <img src="arrow.svg" class="arrow" alt="" />
+              </div>
+            </div>
+            <div class="mipha-text" id="chara-text">
+              "The princess of Hyrule, in whose veins flows the blood of the
+              goddess. She is devoted to researching ancient technology and
+              awakening her sacred power."
+            </div>
+          </div>
+        </div>
+
+        <div class="chara-img">
+          <center>
+            <img
+              id="chara-img"
+              style="height: 80vh"
+              class="mipha-img"
+              src="img/Zelda-botw.png"
+              alt=""
+            />
+          </center>
+        </div>
+      </div>
+
+      <div
+        class="arrow-two-side"
+        style="bottom: 0; left: 0; margin-left: 5.5vh; margin-bottom: 20.5vh"
+      >
+        <img
+          src="arrow.svg"
+          alt=""
+          style="
+            width: 3vh;
+            animation-name: fade-out;
+            animation-duration: 4s;
+            animation-timing-function: ease-in-out;
+          "
+        />
+        <div class="line" style="margin-top: 0.35vh"></div>
+        <img src="arrow.svg" class="arrow" alt="" />
+      </div>
+
+      <div
+        class="arrow-two-side"
+        style="bottom: 0; left: 0; margin-left: 5.5vh; margin-bottom: 8vh"
+      >
+        <img
+          src="arrow.svg"
+          alt=""
+          style="
+            width: 3vh;
+            animation-name: fade-out;
+            animation-duration: 4s;
+            animation-timing-function: ease-in-out;
+          "
+        />
+        <div class="line" style="margin-top: 0.35vh"></div>
+        <img src="arrow.svg" class="arrow" alt="" />
+      </div>
+
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          margin-left: 10vh;
+          margin-top: 10vh;
+        "
+      >
+        <audio src="totk.mp3">
+          <!-- <source src="totk.mp3" type="audio/mp3" /> -->
+        </audio>
+      </div>
+
+      <!-- <div class="circle">
+        <img src="img/sheikah-bg.png" class="sheikah" alt="" srcset="" />
+      </div> -->
+
+      <div class="chara-icon">
+        <div
+          id="zelda"
+          style="
+            background-image: url(img/Zelda-botw-icon.jpg);
+            background-size: cover;
+          "
+        ></div>
+        <div
+          id="link"
+          style="
+            background-image: url(img/Link-botw-icon.jpg);
+            background-size: cover;
+          "
+        ></div>
+        <div
+          id="mipha"
+          style="
+            background-image: url(img/Mipha-icon.png);
+            background-size: cover;
+          "
+        ></div>
+        <div
+          id="revali"
+          style="
+            background-image: url(img/Revali-icon.png);
+            background-size: cover;
+          "
+        ></div>
+        <div
+          id="urbosa"
+          style="
+            background-image: url(img/Urbosa-icon.png);
+            background-size: cover;
+          "
+        ></div>
+        <div
+          id="daruk"
+          style="
+            background-image: url(img/Daruk-icon.png);
+            background-size: cover;
+          "
+        ></div>
+      </div>
+      <div class="divider-from-right" style="margin-bottom: 2vh"></div>
+    </section>
+
+    <script>
+      const mipha = document.getElementById("mipha");
+      const revali = document.getElementById("revali");
+      const urbosa = document.getElementById("urbosa");
+      const daruk = document.getElementById("daruk");
+      const link = document.getElementById("link");
+      const zelda = document.getElementById("zelda");
+      const character = document.getElementById("character");
+      const varImage = document.getElementById("chara-img");
+      const charaName = document.getElementById("chara-name");
+      const charaText = document.getElementById("chara-text");
+      const source = "totk.mp3";
+      const audio = document.createElement("audio");
+
+      zelda.addEventListener("click", function () {
+        character.classList.add("hide");
+
+        setTimeout(() => {
+          var image = "img/Zelda-botw.png";
+          varImage.src = image;
+          charaName.innerHTML = "Zelda";
+          charaText.innerHTML =
+            '"The princess of Hyrule, in whose veins flows the blood of the goddess. She is devoted to researching ancient technology and awakening her sacred power."';
+
+          character.classList.remove("hide");
+        }, 500);
+      });
+
+      link.addEventListener("click", function () {
+        character.classList.add("hide");
+
+        setTimeout(() => {
+          var image = "img/Link.png";
+          varImage.src = image;
+          charaName.innerHTML = "Link";
+          charaText.innerHTML =
+            '"A skilled swordsman serving the royal family of Hyrule. Born to a line of imperial guards, he is renowned for his fighting skills and courage."';
+
+          character.classList.remove("hide");
+        }, 500);
+      });
+
+      mipha.addEventListener("click", function () {
+        character.classList.add("hide");
+
+        setTimeout(() => {
+          var image = "img/Mipha.png";
+          varImage.src = image;
+          charaName.innerHTML = "Mipha";
+          charaText.innerHTML =
+            '"The princess of the Zora, who possesses an incredible healing power. She was childhood friends with Link. Now, she is entrusted with piloting Divine Beast Vah Ruta."';
+
+          character.classList.remove("hide");
+        }, 500);
+      });
+
+      revali.addEventListener("click", function () {
+        character.classList.add("hide");
+
+        setTimeout(() => {
+          var image = "img/revali.png";
+          varImage.src = image;
+          charaName.innerHTML = "Revali";
+          charaText.innerHTML =
+            '"A gifted archer who has mastered an aerial move previously thought impossible. While boastful, he has the skills to back up his claims. Now, he is entrusted with piloting Divine Beast Vah Medoh."';
+
+          character.classList.remove("hide");
+        }, 500);
+      });
+
+      urbosa.addEventListener("click", function () {
+        character.classList.add("hide");
+
+        setTimeout(() => {
+          var image = "img/Urbosa.png";
+          varImage.src = image;
+          charaName.innerHTML = "Urbosa";
+          charaText.innerHTML =
+            '"The chief of the Gerudo who possessed the power to command lightning itself. She was close friends with the late queen of Hyrule. Now, she is entrusted with piloting Divine Beast Vah Naboris."';
+
+          character.classList.remove("hide");
+        }, 500);
+      });
+
+      daruk.addEventListener("click", function () {
+        character.classList.add("hide");
+
+        setTimeout(() => {
+          var image = "img/Daruk.png";
+          varImage.src = image;
+          charaName.innerHTML = "Daruk";
+          charaText.innerHTML =
+            '"A Goron warrior who possesses the power to deflect attacks. He cares deeply for his fellow Gorons. Now, he is entrusted with piloting Divine Beast Vah Rudania."';
+
+          character.classList.remove("hide");
+        }, 500);
+      });
+
+      window.addEventListener("animationstart", function () {
+        var image = document.querySelector(".mipha-img");
+        var text = document.querySelector(".mipha-text");
+        var icon = document.querySelector(".chara-icon");
+        var textPosition = text.getBoundingClientRect().top;
+
+        text.style.opacity = "1";
+
+        icon.style.opacity = "1";
+        icon.style.transition = "opacity 5s";
+
+        image.style.opacity = "1";
+        image.style.transition = "opacity 5s";
+
+        character.classList.add("show");
+      });
+    </script>
+  </body>
+</html>
