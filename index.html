@@ -30,16 +30,17 @@
         scroll-behavior: smooth;
         padding: 0;
         margin: 0;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
       }
 
-      body[data-aos-duration="3000"] [data-aos],
-      [data-aos][data-aos][data-aos-duration="3000"] {
-        transition-duration: 3000ms;
-      }
-
-      body[data-aos-duration="4000"] [data-aos],
-      [data-aos][data-aos][data-aos-duration="4000"] {
-        transition-duration: 4000ms;
+      body[data-aos-duration="2000"] [data-aos],
+      [data-aos][data-aos][data-aos-duration="2000"] {
+        transition-duration: 2000ms;
       }
 
       .stroke {
@@ -53,6 +54,17 @@
 
       .hidden-overflow {
         overflow: hidden;
+      }
+
+      .zoom {
+        transition: transform 0.2s; /* Animation */
+        margin: 0 auto;
+      }
+
+      .zoom:hover {
+        transform: scale(1.07);
+        background-color: slategrey;
+        box-shadow: 1px 1px 2px black, 0 0 25px #5fbdff, 0 0 5px darkblue;
       }
     </style>
   </head>
@@ -76,14 +88,14 @@
       <div class="h-96 w-4/5">
         <h1
           data-aos="fade-right"
-          data-aos-duration="3000"
+          data-aos-duration="2000"
           class="font-semibold text-9xl text-white stroke-base-300 stroke roboto"
         >
           Hi!, I'm Hilal
         </h1>
         <h3
           data-aos="fade-right"
-          data-aos-duration="4000"
+          data-aos-duration="2000"
           class="font-semibold text-5xl text-white mix-blend-hard-light stroke-base-300 stroke roboto"
         >
           Junior FrontEnd Developer
@@ -92,7 +104,7 @@
 
       <div
         data-aos="fade-down"
-        data-aos-duration="3000"
+        data-aos-duration="2000"
         class="bottom-0 left-0 w-1/5 h-48 absolute justify-center flex"
       >
         <a href="#aboutMe" class="animate-pulse">
@@ -107,7 +119,11 @@
     </section>
 
     <section class="pt-12" id="aboutMe">
-      <div class="w-4/5 mx-auto flex pt-12">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        class="w-4/5 mx-auto flex pt-12"
+      >
         <div class="w-2/5">
           <div class="w-72 h-72 bg-gray-700 absolute mt-9"></div>
           <div class="w-72 h-72 bg-white absolute ms-9"></div>
@@ -134,15 +150,17 @@
         <h1 class="text-4xl pt-3 pb-12">MY SKILLS PROGRESS</h1>
       </div>
 
-      <div class="flex flex-wrap justify-evenly">
+      <div
+        class="flex flex-wrap justify-evenly"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+      >
         <div class="w-2/5 grid gap-3">
           <div>
             <p class="label">HTML</p>
             <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
               <div
-                data-aos="slide-right"
-                data-aos-duration="4000"
-                class="bg-blue-900 text-xs font-medium text-blue-100 text-center p-0.5 rounded-full hidden-overflow"
+                class="bg-blue-900 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                 style="width: 90%"
               >
                 90%
@@ -238,6 +256,116 @@
         </div>
       </div>
     </section>
+
+    <section class="px-8 py-10">
+      <div class="text-center mb-12">
+        <h3 class="mb-3">PORTFOLIO</h3>
+        <h1 class="text-4xl">WORK I HAVE DONE</h1>
+      </div>
+      <div
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        class="grid grid-cols-3 gap-4 flex flex-wrap justify-evenly"
+      >
+        <div class="p-5 bg-gray-700 zoom">
+          <img
+            class="object-cover cursor-pointer"
+            src="assests/images/PiBoard/Login.png"
+            onclick="my_modal_1.showModal()"
+            alt=""
+          />
+          <dialog id="my_modal_1" class="modal px-5">
+            <div class="modal-box w-full max-w-full h-screen">
+              <h1 class="pb-5 text-2xl">Halaman login dari website PiBoard</h1>
+              <img
+                src="assests/images/PiBoard/Login.png"
+                class="w-full"
+                alt=""
+              />
+              <h1 class="py-4 text-2xl">Halaman Dashboard dari PiBoard</h1>
+              <img src="assests/images/PiBoard/dashboard.png" alt="" />
+
+              <div class="modal-action top-0 right-5 absolute">
+                <form method="dialog">
+                  <button class="btn">
+                    <iconify-icon icon="akar-icons:cross"></iconify-icon>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+        <div class="p-5 bg-gray-700 zoom">
+          <img
+            class="object-cover cursor-pointer"
+            src="assests/images/MyBlog/Dashboard_user.png"
+            onclick="my_modal_2.showModal()"
+            alt=""
+          />
+          <dialog id="my_modal_2" class="modal px-5">
+            <div class="modal-box w-full max-w-full h-screen">
+              <h3 class="font-bold text-lg">Hello!</h3>
+              <p class="py-4">Click the button below to close</p>
+              <div class="modal-action top-0 right-5 absolute">
+                <form method="dialog">
+                  <button class="btn">
+                    <iconify-icon icon="akar-icons:cross"></iconify-icon>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+        <div class="p-5 bg-gray-700 zoom">
+          <img
+            class="object-cover cursor-pointer"
+            src="assests/images/CodeLearn/dashboard_user.png"
+            onclick="my_modal_3.showModal()"
+            alt=""
+          />
+          <dialog id="my_modal_3" class="modal px-5">
+            <div class="modal-box w-full max-w-full h-screen">
+              <h3 class="font-bold text-lg">Hello!</h3>
+              <p class="py-4">Click the button below to close</p>
+              <div class="modal-action top-0 right-5 absolute">
+                <form method="dialog">
+                  <button class="btn">
+                    <iconify-icon icon="akar-icons:cross"></iconify-icon>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+        <!-- <div class="p-5 bg-gray-700 zoom">
+          <div style="height: 100px; object-fit: cover">
+            <img
+              class="cursor-pointer"
+              src="assests/images/E-Learning/login_admin.png"
+              onclick="my_modal_4.showModal()"
+              alt=""
+            />
+          </div>
+          <dialog id="my_modal_4" class="modal px-5">
+            <div class="modal-box w-full max-w-full h-screen">
+              <h3 class="font-bold text-lg">Hello!</h3>
+              <p class="py-4">Click the button below to Modal 4</p>
+              <div class="modal-action top-0 right-5 absolute">
+                <form method="dialog">
+                  <button class="btn">
+                    <iconify-icon icon="akar-icons:cross"></iconify-icon>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- <section class="h-screen flex justify-center my-auto">
+      <div class="bg-black w-4/5 h-96"></div>
+    </section> -->
 
     <!-- Tailwindcss -->
     <script src="https://cdn.tailwindcss.com"></script>
