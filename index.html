@@ -30,16 +30,17 @@
         scroll-behavior: smooth;
         padding: 0;
         margin: 0;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
       }
 
-      body[data-aos-duration="3000"] [data-aos],
-      [data-aos][data-aos][data-aos-duration="3000"] {
-        transition-duration: 3000ms;
-      }
-
-      body[data-aos-duration="4000"] [data-aos],
-      [data-aos][data-aos][data-aos-duration="4000"] {
-        transition-duration: 4000ms;
+      body[data-aos-duration="2000"] [data-aos],
+      [data-aos][data-aos][data-aos-duration="2000"] {
+        transition-duration: 2000ms;
       }
 
       .stroke {
@@ -53,6 +54,84 @@
 
       .hidden-overflow {
         overflow: hidden;
+      }
+
+      .zoom {
+        transition: transform 0.2s; /* Animation */
+        margin: 0 auto;
+      }
+
+      .zoom:hover {
+        transform: scale(1.07);
+        background-color: slategrey;
+        box-shadow: 1px 1px 2px black, 0 0 25px #5fbdff, 0 0 5px darkblue;
+      }
+
+      .message {
+        width: 84%;
+      }
+
+      @media screen and (max-width: 760px) {
+        .contactMe {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .contactMe .maps {
+          width: 100%;
+        }
+
+        .contactMe .contact {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .contactMe .contact .name-email {
+          width: 90%;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .contactMe .contact .name .email {
+          padding: 10px 0;
+          margin: auto;
+        }
+
+        .contactMe .contact input {
+          width: 100%;
+        }
+        .contactMe .contact .message {
+          width: 90%;
+        }
+
+        .hero-chara {
+          margin-top: 130px;
+        }
+
+        .hero-chara .hero-name {
+          font-size: 40px;
+        }
+
+        .hero-chara .hero-title {
+          font-size: 25px;
+        }
+
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          transition: 0.3s;
+          width: 40%;
+        }
+
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+          padding: 2px 16px;
+        }
       }
     </style>
   </head>
@@ -73,18 +152,18 @@
       </div> -->
 
       <!-- Hero -->
-      <div class="h-96 w-4/5">
+      <div class="h-96 w-4/5 hero-chara">
         <h1
           data-aos="fade-right"
-          data-aos-duration="3000"
-          class="font-semibold text-9xl text-white stroke-base-300 stroke roboto"
+          data-aos-duration="2000"
+          class="font-semibold text-9xl text-white stroke-base-300 stroke roboto hero-name"
         >
           Hi!, I'm Hilal
         </h1>
         <h3
           data-aos="fade-right"
-          data-aos-duration="4000"
-          class="font-semibold text-5xl text-white mix-blend-hard-light stroke-base-300 stroke roboto"
+          data-aos-duration="2000"
+          class="font-semibold text-5xl text-white mix-blend-hard-light stroke-base-300 stroke roboto hero-title"
         >
           Junior FrontEnd Developer
         </h3>
@@ -92,7 +171,7 @@
 
       <div
         data-aos="fade-down"
-        data-aos-duration="3000"
+        data-aos-duration="2000"
         class="bottom-0 left-0 w-1/5 h-48 absolute justify-center flex"
       >
         <a href="#aboutMe" class="animate-pulse">
@@ -107,7 +186,11 @@
     </section>
 
     <section class="pt-12" id="aboutMe">
-      <div class="w-4/5 mx-auto flex pt-12">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        class="w-4/5 mx-auto flex pt-12"
+      >
         <div class="w-2/5">
           <div class="w-72 h-72 bg-gray-700 absolute mt-9"></div>
           <div class="w-72 h-72 bg-white absolute ms-9"></div>
@@ -116,13 +199,9 @@
           <h1 class="text-5xl font-bold">ABOUT ME</h1>
           <h3 class="text-3xl mt-2">Junior FrontEnd Developer</h3>
           <p class="text-lg mt-8 w-4/5">
-            I'm <span class="font-bold">Hilal Badru</span> Lorem, ipsum dolor
-            sit amet consectetur adipisicing elit. Ipsam quaerat optio quos
-            deleniti, neque nesciunt explicabo asperiores soluta ex dolor
-            assumenda, dolore iure, ullam magnam saepe in distinctio blanditiis
-            praesentium. Aliquam dolorem neque quidem veritatis? Sapiente
-            incidunt perferendis molestiae magnam iusto facere velit aperiam est
-            assumenda, veniam excepturi culpa pariatur!
+            I'm <span class="font-bold">Hilal Badru</span>
+            I am a frontend developer who started studying in 2020 and studied
+            at SMK Prakarya Internasional
           </p>
         </div>
       </div>
@@ -134,15 +213,17 @@
         <h1 class="text-4xl pt-3 pb-12">MY SKILLS PROGRESS</h1>
       </div>
 
-      <div class="flex flex-wrap justify-evenly">
+      <div
+        class="flex flex-wrap justify-evenly"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+      >
         <div class="w-2/5 grid gap-3">
           <div>
             <p class="label">HTML</p>
             <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
               <div
-                data-aos="slide-right"
-                data-aos-duration="4000"
-                class="bg-blue-900 text-xs font-medium text-blue-100 text-center p-0.5 rounded-full hidden-overflow"
+                class="bg-blue-900 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                 style="width: 90%"
               >
                 90%
@@ -234,6 +315,153 @@
                 45%
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-8 py-10">
+      <div class="text-center mb-12">
+        <h3 class="mb-3">PORTFOLIO</h3>
+        <h1 class="text-4xl">WORK I HAVE DONE</h1>
+      </div>
+      <div
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        class="grid grid-cols-3 gap-4 flex flex-wrap justify-evenly"
+      >
+        <div class="p-5 bg-gray-700 zoom">
+          <img
+            class="object-cover cursor-pointer"
+            src="assests/images/PiBoard/Login.png"
+            onclick="my_modal_1.showModal()"
+            alt=""
+          />
+          <dialog id="my_modal_1" class="modal px-5">
+            <div class="modal-box w-full max-w-full h-screen">
+              <h1 class="pb-5 text-2xl">Halaman login dari website PiBoard</h1>
+              <img
+                src="assests/images/PiBoard/Login.png"
+                class="w-full"
+                alt=""
+              />
+              <h1 class="py-4 text-2xl">Halaman Dashboard dari PiBoard</h1>
+              <img src="assests/images/PiBoard/dashboard.png" alt="" />
+
+              <div class="modal-action top-0 right-5 absolute">
+                <form method="dialog">
+                  <button class="btn">
+                    <iconify-icon icon="akar-icons:cross"></iconify-icon>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+        <div class="p-5 bg-gray-700 zoom">
+          <img
+            class="object-cover cursor-pointer"
+            src="assests/images/MyBlog/Dashboard_user.png"
+            onclick="my_modal_2.showModal()"
+            alt=""
+          />
+          <dialog id="my_modal_2" class="modal px-5">
+            <div class="modal-box w-full max-w-full h-screen">
+              <h3 class="font-bold text-lg">Hello!</h3>
+              <p class="py-4">Click the button below to close</p>
+              <div class="modal-action top-0 right-5 absolute">
+                <form method="dialog">
+                  <button class="btn">
+                    <iconify-icon icon="akar-icons:cross"></iconify-icon>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+        <div class="p-5 bg-gray-700 zoom">
+          <img
+            class="object-cover cursor-pointer"
+            src="assests/images/CodeLearn/dashboard_user.png"
+            onclick="my_modal_3.showModal()"
+            alt=""
+          />
+          <dialog id="my_modal_3" class="modal px-5">
+            <div class="modal-box w-full max-w-full h-screen">
+              <h3 class="font-bold text-lg">Hello!</h3>
+              <p class="py-4">Click the button below to close</p>
+              <div class="modal-action top-0 right-5 absolute">
+                <form method="dialog">
+                  <button class="btn">
+                    <iconify-icon icon="akar-icons:cross"></iconify-icon>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+        <!-- <div class="p-5 bg-gray-700 zoom">
+          <div style="height: 100px; object-fit: cover">
+            <img
+              class="cursor-pointer"
+              src="assests/images/E-Learning/login_admin.png"
+              onclick="my_modal_4.showModal()"
+              alt=""
+            />
+          </div>
+          <dialog id="my_modal_4" class="modal px-5">
+            <div class="modal-box w-full max-w-full h-screen">
+              <h3 class="font-bold text-lg">Hello!</h3>
+              <p class="py-4">Click the button below to Modal 4</p>
+              <div class="modal-action top-0 right-5 absolute">
+                <form method="dialog">
+                  <button class="btn">
+                    <iconify-icon icon="akar-icons:cross"></iconify-icon>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div> -->
+      </div>
+    </section>
+
+    <section class="h-screen">
+      <div class="w-full pt-12">
+        <h1 class="text-center">CONTACT ME</h1>
+      </div>
+      <div class="w-full h-96 rounded mt-12 flex justify-evenly contactMe">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126744.84204366946!2d107.610112!3d-6.9173248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e64c5e8866e5%3A0x37be7ac9d575f7ed!2sGedung%20Sate!5e0!3m2!1sid!2sid!4v1702000712888!5m2!1sid!2sid"
+          class="maps"
+          width="600"
+          height="385"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <div class="w-2/5 bg-gray-700 rounded contact">
+          <div class="flex justify-evenly w-full name-email">
+            <div class="name">
+              <label class="label">Name</label>
+              <input type="text" class="rounded" placeholder="Name" />
+            </div>
+            <div class="email">
+              <label class="label">Email</label>
+              <input type="text" class="rounded" placeholder="Email" />
+            </div>
+          </div>
+          <div class="flex flex-col justify-center mx-auto message">
+            <label class="label">Message</label>
+            <textarea
+              name=""
+              class="rounded px-2"
+              id=""
+              cols="60"
+              rows="10"
+              placeholder="Message"
+            ></textarea>
           </div>
         </div>
       </div>
